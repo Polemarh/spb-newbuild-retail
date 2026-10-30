@@ -18,7 +18,9 @@ T8. Анализ: кто занимает первые этажи новостр
  4. Контроль «центр vs окраина»: Б+Э в среднем ближе к центру, где плотнее общепит.
     (а) сравнение внутри поясов удалённости от центра; (б) индекс «внутри ЖК / окружение 500 м»:
     насколько доля категории в ЖК выше или ниже, чем в его же окружении.
- 5. Устойчивость: только дома, чья точка лежит внутри контура OSM (match=inside), и порог 10 м вместо 30 м.
+ 5. Устойчивость: порог 0 и 30 м, только дома с точкой внутри контура, без 5 крупнейших ЖК.
+ 6. (31.10, после ручной сверки) «Внутри ЖК» = ≤10 м от НАДЁЖНОГО контура OSM (04_osm_link.py); метрики «внутри»
+    (заполненность, структура, плотность, районы) считаются только по домам с надёжным контуром.
 """
 from pathlib import Path
 import numpy as np
@@ -49,12 +51,14 @@ z["dc_km"] = np.hypot((z.lon - CENTER[1]) * KX, (z.lat - CENTER[0]) * KY) / 1000
 z["zone"] = pd.cut(z.dc_km, [a for a, _, _ in ZONES] + [ZONES[-1][1]], labels=[n for _, _, n in ZONES], right=False)
 L = pd.read_csv(PROC / "poi_links.csv")
 L = L[L.cat != "vacant"].merge(z[["obj_id", "zk", "class_name", "group", "zone", "district", "match"]], on="obj_id")
+zr = z[z.reliable].copy()                        # дома с надёжным контуром OSM — база для метрик «внутри»
 
 def objects(level, max_d=None, houses=None):
-    """Уникальные объекты на ЖК: level='inside' или 'env500'."""
-    d = L[L[level]]
-    if max_d is not None:
-        d = d[d.dist_bld_m <= max_d]
+    """Уникальные объекты на ЖК: level='inside' (≤10 м; max_d — другой порог) или 'env500'."""
+    if level == "inside" and max_d is not None:
+        d = L[L.reliable & (L.dist_bld_m <= max_d)]
+    else:
+        d = L[L[level]]
     if houses is not None:
         d = d[d.obj_id.isin(houses)]
     return d.drop_duplicates(["zk", "poi_key"])
@@ -96,16 +100,23 @@ log(f"  Пояса удалённости, домов: " + ", ".join(f"{k} {v}" 
 cz = pd.crosstab(z.class_name, z.zone).reindex(CLASSES)
 log(cz.to_string())
 cz.to_csv(TAB / "t1_class_zone_n.csv")
+rc = z.groupby("class_name").reliable.agg(["sum", "mean"]).reindex(CLASSES)
+log(f"  С надёжным контуром OSM (база метрик «внутри»): {len(zr)} домов из {len(z)}; по классам: "
+    + ", ".join(f"{k} {int(r['sum'])} ({r['mean']:.0%})" for k, r in rc.iterrows()))
+rc.to_csv(TAB / "t1_reliable.csv")
+pd.crosstab(zr.class_name, zr.zone).reindex(CLASSES).to_csv(TAB / "t1_class_zone_n.csv")
 
 # ---------------- 2. заполненность ----------------
 log()
-log("2. ДОЛЯ ДОМОВ С ХОТЯ БЫ ОДНИМ АРЕНДАТОРОМ OSM «ВНУТРИ ЖК» (≤30 м от контура)")
+log("2. ДОЛЯ ДОМОВ С ХОТЯ БЫ ОДНИМ АРЕНДАТОРОМ OSM «ВНУТРИ ЖК» (≤10 м от контура; дома с надёжным контуром)")
 z["has"] = z.in_total > 0
-fill = pd.DataFrame({"по классам": z.groupby("class_name").has.mean().reindex(CLASSES)})
+zr["has"] = zr.in_total > 0
+fill = pd.DataFrame({"по классам": zr.groupby("class_name").has.mean().reindex(CLASSES)})
 log((fill * 100).round(0).astype(int).to_string())
-fy = (z.groupby("ready_year").has.mean() * 100).round(0)
+fill.mul(100).round(0).to_csv(TAB / "t2_fill_by_class.csv")
+fy = (zr.groupby("ready_year").has.mean() * 100).round(0)
 log("  по году ввода, %: " + ", ".join(f"{int(k)} — {int(v)}" for k, v in fy.items()))
-fz = (pd.crosstab(z.class_name, z.zone, values=z.has, aggfunc="mean") * 100).round(0).reindex(CLASSES)
+fz = (pd.crosstab(zr.class_name, zr.zone, values=zr.has, aggfunc="mean") * 100).round(0).reindex(CLASSES)
 log("  по классу и поясу, %:\n" + fz.to_string())
 fy.to_csv(TAB / "t2_fill_by_year.csv"); fz.to_csv(TAB / "t2_fill_by_class_zone.csv")
 
@@ -161,7 +172,7 @@ zt.to_csv(TAB / "t4a_by_zone.csv", index=False)
 # 4б. индекс «внутри / окружение 500 м»
 log()
 log("4б. ИНДЕКС «ВНУТРИ ЖК / ОКРУЖЕНИЕ 500 м» (1,0 = как вокруг; <1 — в ЖК категории меньше, чем в его окружении)")
-E = objects("env500")
+E = objects("env500", houses=zr.obj_id)
 _, she = shares(E, "group")
 _, shi = shares(I, "group")
 idx = pd.DataFrame({"внутри_Б+Э_%": shi["Б+Э"], "окружение_Б+Э_%": she["Б+Э"],
@@ -176,13 +187,12 @@ idx.to_csv(TAB / "t4b_inside_vs_env.csv")
 log()
 log("4в. УСТОЙЧИВОСТЬ: доля общепита / продуктов, % (Б+Э | К+Т)")
 strict = z.loc[z.match == "inside", "obj_id"]
-with_fp = z.loc[z.footprint == "osm", "obj_id"]
 big = I.groupby("zk").size().sort_values(ascending=False)
 log(f"  концентрация: 5 крупнейших ЖК дают {big.head(5).sum() / len(I):.0%} объектов ({', '.join(big.head(5).index)})")
 rows = []
-for name, d in [("основной вариант (≤30 м, все дома)", I),
-                ("порог 10 м", objects("inside", max_d=10)),
-                ("без домов без контура OSM (круг 50 м)", objects("inside", houses=with_fp)),
+for name, d in [("основной вариант (≤10 м)", I),
+                ("только объекты внутри контура (0 м)", objects("inside", max_d=0)),
+                ("порог 30 м (до ручной сверки)", objects("inside", max_d=30)),
                 ("только дома с точкой внутри контура OSM", objects("inside", houses=strict)),
                 ("без 5 крупнейших ЖК", I[~I.zk.isin(big.head(5).index)])]:
     r = {"вариант": name}
@@ -198,8 +208,8 @@ rob.to_csv(TAB / "t4c_robustness.csv", index=False)
 
 # ---------------- 5. районы ----------------
 log()
-log("5. РАЙОНЫ: арендаторы «внутри ЖК» на 1 000 квартир и доля домов с арендаторами (районы с ≥10 домами)")
-dist = z.groupby("district").agg(домов=("obj_id", "count"), квартир=("flats", "sum"), домов_с_арендаторами=("has", "mean"),
+log("5. РАЙОНЫ: арендаторы «внутри ЖК» на 1 000 квартир и доля домов с арендаторами (дома с надёжным контуром; районы с ≥10 домами)")
+dist = zr.groupby("district").agg(домов=("obj_id", "count"), квартир=("flats", "sum"), домов_с_арендаторами=("has", "mean"),
                                   доля_БЭ=("group", lambda g: (g == "Б+Э").mean()))
 dist["объектов_внутри"] = I.drop_duplicates("poi_key").groupby("district").size()
 dist = dist.fillna({"объектов_внутри": 0})
@@ -215,7 +225,7 @@ d10 = dist[dist.домов >= 10]
 log(f"  Медиана по районам (≥10 домов): {d10.на_1000_кв.median():.1f} объекта на 1 000 квартир; "
     f"разброс {d10.на_1000_кв.min():.1f}–{d10.на_1000_кв.max():.1f}")
 cls_d = (I.drop_duplicates(["class_name", "poi_key"]).groupby("class_name").size()
-         / z.groupby("class_name").flats.sum() * 1000).reindex(CLASSES).round(1)
+         / zr.groupby("class_name").flats.sum() * 1000).reindex(CLASSES).round(1)
 log("  на 1 000 квартир по классам: " + ", ".join(f"{k} {v}" for k, v in cls_d.items()))
 cls_d.to_csv(TAB / "t5_density_by_class.csv")
 
@@ -246,7 +256,8 @@ fdt.to_csv(TAB / "t6_food_formats.csv")
 
 # ---------------- 7. сводные цифры для дайджеста ----------------
 kp = {"домов": len(z), "ЖК": z.zk.nunique(), "квартир": int(z.flats.sum()),
-      "объектов_внутри": len(u), "доля_домов_с_арендаторами_%": round(z.has.mean() * 100),
+      "объектов_внутри": len(u), "домов_надёжных": len(zr), "квартир_надёжных": int(zr.flats.sum()),
+      "доля_домов_с_арендаторами_%": round(zr.has.mean() * 100),
       "общепит_БЭ_%": main.query("категория=='Общепит' and группа=='Б+Э'")["доля_%"].iloc[0],
       "общепит_КТ_%": main.query("категория=='Общепит' and группа=='К+Т'")["доля_%"].iloc[0],
       "продукты_БЭ_%": main.query("категория=='Продукты' and группа=='Б+Э'")["доля_%"].iloc[0],

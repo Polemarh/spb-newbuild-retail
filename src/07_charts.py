@@ -61,7 +61,7 @@ ax.xaxis.grid(True, color=GRID); ax.set_axisbelow(True); ax.tick_params(axis="y"
 ax.set_xlabel("% арендаторов «внутри ЖК»")
 ax.legend(loc="lower right", frameon=False)
 frame(fig, "В комфорт-классе каждый второй арендатор — продукты или ПВЗ",
-      "Структура арендаторов первых этажей ЖК, сданных в 2021–2025 гг., % от объектов OSM ≤30 м от корпусов")
+      "Структура арендаторов первых этажей ЖК, сданных в 2021–2025 гг., % от объектов OSM ≤10 м от корпусов")
 save(fig, "c1_structure.png")
 
 # ---------- 2. проверка правила: доли с 95% ДИ ----------
@@ -80,9 +80,10 @@ for i, c in enumerate(cats[::-1]):
 ax.set_yticks(range(len(cats))); ax.set_yticklabels(cats[::-1]); ax.set_xlim(0, 41)
 ax.xaxis.grid(True, color=GRID); ax.set_axisbelow(True); ax.tick_params(axis="y", length=0)
 ax.set_xlabel("% арендаторов «внутри ЖК»; линия — 95% доверительный интервал (бутстрэп по ЖК)")
-ax.plot([], [], "o", color=BE, label="Бизнес + Элитный (70 ЖК)"); ax.plot([], [], "o", color=KT, label="Комфорт + Типовой (118 ЖК)")
+nzk = r.dropna(subset=["ЖК"]).groupby("группа").ЖК.first().astype(int)
+ax.plot([], [], "o", color=BE, label=f"Бизнес + Элитный ({nzk['Б+Э']} ЖК)"); ax.plot([], [], "o", color=KT, label=f"Комфорт + Типовой ({nzk['К+Т']} ЖК)")
 ax.legend(loc="upper center", bbox_to_anchor=(0.45, 1.13), ncol=2, frameon=False)
-frame(fig, "Правило подтверждается для продуктовых, но не для общепита",
+frame(fig, "В бизнес-классе продуктовых меньше, а общепита — больше",
       "Доля категории среди арендаторов первых этажей, %; справа — разница Б+Э − К+Т")
 save(fig, "c2_rule_check.png")
 
@@ -104,7 +105,7 @@ for ax, c in zip(axes, ["Общепит", "Продукты"]):
 axes[0].set_ylabel("% арендаторов")
 fig.legend(handles=[Patch(color=BE, label="Бизнес + Элитный"), Patch(color=KT, label="Комфорт + Типовой")],
            loc="upper right", bbox_to_anchor=(0.97, 0.86), ncol=2, frameon=False)
-frame(fig, "Разница сохраняется на одном расстоянии от центра",
+frame(fig, "Внутри поясов удалённости от центра разница сохраняется",
       "Доля категории среди арендаторов «внутри ЖК», % (дальше 15 км бизнес-класса почти нет)")
 save(fig, "c3_zones.png")
 
@@ -126,8 +127,8 @@ ax.set_xticks(x); ax.set_xticklabels(fz.index); ax.set_ylim(0, 100)
 ax.yaxis.grid(True, color=GRID); ax.set_axisbelow(True); ax.tick_params(axis="x", length=0)
 ax.set_ylabel("% домов")
 ax.legend(title="Удалённость от центра", loc="upper right", bbox_to_anchor=(1, 1.2), ncol=3, frameon=False, fontsize=9, title_fontsize=9)
-frame(fig, "На окраинах у трёх из четырёх домов комфорт-класса нет арендаторов в OSM",
-      "Доля домов, у которых OSM знает хотя бы одного арендатора на первом этаже, %; ячейки с <10 домами скрыты")
+frame(fig, f"Дальше 15 км от центра у {100 - fz.loc['Комфорт', '15 км и дальше']:.0f}% домов комфорт-класса нет арендаторов в OSM",
+      "Доля домов с надёжным контуром OSM, у которых известен хотя бы один арендатор, %; ячейки с <10 домами скрыты")
 save(fig, "c4_fill.png")
 
 # ---------- 5. карта районов ----------
@@ -168,8 +169,10 @@ cb = fig.colorbar(sm, cax=cax, orientation="horizontal")
 cb.set_label("арендаторов «внутри ЖК» на 1 000 квартир (шкала обрезана на 12)", color=MUTED, fontsize=8.5)
 cb.outline.set_visible(False)
 hi = dist.loc[["Адмиралтейский район", "Петроградский район"], "на_1000_кв"]
-TITLE5 = f"Центр: {hi.min():.0f}–{hi.max():.0f} арендаторов на 1 000 квартир,\nспальные районы: 2–4"
-frame(fig, TITLE5, "Арендаторы первых этажей ЖК 2021–2025 гг. на 1 000 квартир;\nточки — дома выборки (793)", tsize=13, sub_y=0.62,
+SLEEP = dist.nlargest(5, "квартир").index                # 5 крупнейших районов по числу квартир в выборке
+sp = dist.loc[SLEEP, "на_1000_кв"]
+TITLE5 = f"Центр: {hi.min():.0f}–{hi.max():.0f} арендаторов на 1 000 квартир,\n5 крупнейших по вводу районов: {sp.min():.0f}–{sp.max():.0f}"
+frame(fig, TITLE5, "Арендаторы первых этажей ЖК 2021–2025 гг. на 1 000 квартир;\nточки — дома выборки (793); дома с надёжным контуром", tsize=13, sub_y=0.62,
       src=SRC.replace(" и OpenStreetMap", "\nи OpenStreetMap"))
 save(fig, "c5_map.png")
 

@@ -14,8 +14,11 @@ T6. Привязка объектов OpenStreetMap («арендаторов»)
  2. Дом ДОМ.РФ → контур здания OSM: здание, внутри которого лежит точка дома; если такого нет —
     ближайшее здание не дальше MATCH_M метров. Качество сверяем: этажность OSM vs этажность ДОМ.РФ.
  3. «Внутри ЖК» = объект OSM внутри контура дома или не дальше INSIDE_M метров от него
-    (точку магазина в OSM часто ставят у входа, снаружи контура). Если контур не найден — запасной
-    вариант: круг FALLBACK_M метров вокруг точки ДОМ.РФ (помечается footprint=point).
+    (точку магазина в OSM часто ставят у входа, снаружи контура). Считается только для домов
+    с НАДЁЖНЫМ контуром (reliable): контур найден и его этажность не расходится с ДОМ.РФ больше чем на 2 эт.
+    (если этажности в OSM нет — контур считаем надёжным). 31.10: порог снижен с 30 до 10 м, круг 50 м
+    для домов без контура убран — ручная сверка с Яндекс Картами показала, что в центре 30 м захватывают
+    соседние здания и через дорогу, а при неверном контуре арендаторы чужие.
  4. «Окружение» = объекты в радиусе ENV_M метров от точки дома (включая «внутренние»).
  5. Категории арендаторов — по таблице тегов ниже (CATEGORY_RULES); объекты-«не арендаторы»
     (банкоматы, постаматы, терминалы и т. п.) исключаются.
@@ -32,7 +35,7 @@ from shapely.strtree import STRtree
 
 ROOT = Path(__file__).resolve().parent.parent
 INT, OUT = ROOT / "data/interim", ROOT / "data/processed"
-MATCH_M, INSIDE_M, FALLBACK_M, ENV_M = 50, 30, 50, 500
+MATCH_M, INSIDE_M, FALLBACK_M, ENV_M = 50, 10, 50, 500
 LAT0, LON0 = 59.94, 30.31
 KX, KY = 111320 * np.cos(np.radians(LAT0)), 110574      # метров в градусе долготы / широты на широте СПб
 
@@ -150,6 +153,7 @@ m["levels_ok"] = np.where(m.bld_levels.str.isdigit(),
                           (pd.to_numeric(m.bld_levels, errors="coerce") - m.floors_max).abs() <= 2, np.nan)
 m["bld_shared_n"] = m.groupby("bld_osm").obj_id.transform("count").where(m.bld_osm != "", 0)
 m["footprint"] = np.where(m.match == "none", "point", "osm")
+m["reliable"] = (m.footprint == "osm") & (m.levels_ok != 0)        # NaN (нет этажности в OSM) — надёжный
 
 log()
 log("Дом ДОМ.РФ → контур здания OSM:")
@@ -161,6 +165,8 @@ lv = m[m.levels_ok.notna()]
 log(f"  проверка этажностью: у {len(lv)} совпавших контуров в OSM есть этажность; совпадает с ДОМ.РФ (±2 эт.) — "
     f"{lv.levels_ok.astype(bool).sum()} ({lv.levels_ok.astype(bool).mean():.0%})")
 log(f"  один контур OSM на несколько домов ДОМ.РФ (одна точка на весь ЖК/очередь): домов {int((m.bld_shared_n>1).sum())}")
+log(f"  надёжный контур (найден и этажность не противоречит): {int(m.reliable.sum())} домов из {len(m)}; "
+    f"исключены: без контура {int((m.footprint == 'point').sum())}, этажность расходится {int((m.levels_ok == 0).sum())}")
 
 # ---------------- 3. объекты внутри / рядом ----------------
 links = []
@@ -174,8 +180,8 @@ for i, r in m.iterrows():
         links.append((r.obj_id, j, np.nan, round(p.distance(poi_pts[j]), 1)))
 L = (pd.DataFrame(links, columns=["obj_id", "pidx", "dist_bld_m", "dist_point_m"])
        .sort_values("dist_bld_m").drop_duplicates(["obj_id", "pidx"]))
-L = L.merge(m[["obj_id", "footprint"]], on="obj_id")
-L["inside"] = L.dist_bld_m <= np.where(L.footprint == "osm", INSIDE_M, FALLBACK_M)
+L = L.merge(m[["obj_id", "footprint", "reliable"]], on="obj_id")
+L["inside"] = L.reliable & (L.dist_bld_m <= INSIDE_M)
 L["env500"] = L.dist_point_m <= ENV_M
 P = pois[["poi_key", "cat", "amenity", "shop", "leisure", "healthcare", "office", "craft", "name", "brand"]]
 L = L.join(P, on="pidx").drop(columns="pidx")
@@ -196,13 +202,14 @@ m.drop(columns="bld_idx").to_csv(OUT / "house_osm_match.csv", index=False)
 
 # ---------------- 5. отчёт ----------------
 log()
-log(f"Пар «дом × объект»: внутри ЖК (≤{INSIDE_M} м от контура) — {int(L.inside.sum())}, в радиусе {ENV_M} м — {int(L.env500.sum())}")
+log(f"Пар «дом × объект»: внутри ЖК (≤{INSIDE_M} м от надёжного контура) — {int(L.inside.sum())}, в радиусе {ENV_M} м — {int(L.env500.sum())}")
 u_in = L[L.inside].drop_duplicates("poi_key")
 log(f"Уникальных объектов «внутри ЖК»: {len(u_in)} (один объект может попасть к соседним корпусам одного ЖК)")
-log(f"Домов, у которых внутри есть хотя бы один арендатор OSM: {(out.in_total>0).sum()} из {len(out)} ({(out.in_total>0).mean():.0%})")
+rel = out[out.reliable]
+log(f"Домов с надёжным контуром, у которых внутри есть хотя бы один арендатор OSM: {(rel.in_total>0).sum()} из {len(rel)} ({(rel.in_total>0).mean():.0%})")
 log()
-log("Чувствительность к порогу «внутри» (уникальные объекты, только дома с контуром OSM):")
-osm_l = L[L.footprint == "osm"]
+log("Чувствительность к порогу «внутри» (уникальные объекты, только дома с надёжным контуром):")
+osm_l = L[L.reliable]
 for t in (0, 10, 30, 50):
     log(f"  ≤{t:2d} м: {osm_l[osm_l.dist_bld_m <= t].poi_key.nunique()}")
 log()
