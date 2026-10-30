@@ -1,145 +1,144 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>Первые этажи новостроек СПб — полная версия</title><style>
-@page { size: A4; margin: 14mm 15mm 14mm 15mm; }
-* { box-sizing: border-box; }
-body { font-family: 'PT Sans', Arial, sans-serif; color: #1F2A36; font-size: 10pt; line-height: 1.38; margin: 0; }
-h1 { font-size: 25pt; line-height: 1.08; margin: 0 0 4mm; color: #1F2A36; }
-h2 { font-size: 14pt; margin: 6mm 0 2.5mm; color: #1F2A36; border-bottom: 2px solid #B5404C; padding-bottom: 1mm; }
-h3 { font-size: 11pt; margin: 4mm 0 1.5mm; }
-.sub { color: #4B5563; font-size: 11.5pt; margin-bottom: 1mm; }
-.by { color: #6B7280; font-size: 8.5pt; margin-bottom: 5mm; }
-.kpi { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin: 4mm 0 5mm; }
-.kpi div { background: #F3F5F8; border-top: 3px solid #1F3A5F; padding: 3mm; }
-.kpi b { display: block; font-size: 20pt; color: #1F3A5F; line-height: 1.05; }
-.kpi span { font-size: 8.5pt; color: #4B5563; }
-.lead { font-size: 11pt; margin-bottom: 4mm; }
-.quote { border-left: 3px solid #B5404C; padding: 1mm 0 1mm 4mm; margin: 4mm 0; color: #374151; font-style: italic; }
-.quote .who { font-style: normal; font-size: 8.5pt; color: #6B7280; margin-top: 1mm; }
-ul.k { padding-left: 5mm; margin: 2mm 0; } ul.k li { margin-bottom: 1.6mm; }
-img { width: 100%; display: block; margin: 1.5mm auto 1mm; break-inside: avoid; }
-.w90 { width: 90%; } .w80 { width: 80%; }
-.g2 { display: grid; grid-template-columns: 56% 1fr; gap: 5mm; align-items: start; break-inside: avoid; }
-.g2 img { margin-top: 0; }
-table, .quote, .kpi { break-inside: avoid; }
-h2, h3 { break-after: avoid; }
-table { border-collapse: collapse; width: 100%; font-size: 8.8pt; margin: 2mm 0 1mm; }
-th { text-align: left; color: #4B5563; font-weight: normal; border-bottom: 1.5px solid #1F3A5F; padding: 1.2mm 1.5mm; }
-td { border-bottom: 1px solid #E5E7EB; padding: 1.1mm 1.5mm; }
-td.n, th.n { text-align: right; white-space: nowrap; }
-.src { font-size: 7.5pt; color: #6B7280; margin-bottom: 3mm; }
-.note { font-size: 8.5pt; color: #4B5563; }
-.pb { page-break-before: always; }
-.up { color: #1F3A5F; font-weight: bold; } .dn { color: #B5404C; font-weight: bold; }
-.foot { font-size: 7.5pt; color: #6B7280; border-top: 1px solid #E5E7EB; padding-top: 2mm; margin-top: 4mm; }
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><title>Первые этажи новостроек СПб, полная версия</title><style>
+@page { size: A4; margin: 16mm 17mm 16mm 17mm;
+        @bottom-right { content: counter(page); font-family: 'PT Sans', Arial, sans-serif; font-size: 8pt; color: #777; } }
+body { font-family: 'PT Sans', Arial, sans-serif; color: #222; font-size: 10pt; line-height: 1.45; margin: 0; }
+p { margin: 0 0 2.2mm; text-align: justify; hyphens: auto; }
+h1 { font-size: 19pt; line-height: 1.15; margin: 1mm 0 2mm; font-weight: bold; }
+h2 { font-size: 12.5pt; margin: 5mm 0 2mm; }
+h3 { font-size: 10.5pt; margin: 3.5mm 0 1.5mm; }
+.place { font-size: 9pt; color: #555; }
+.by { font-size: 9pt; color: #555; border-bottom: 1px solid #999; padding-bottom: 2mm; margin-bottom: 4mm; }
+table.kf { width: 100%; border-collapse: collapse; margin: 1mm 0 4mm; }
+table.kf td { width: 25%; vertical-align: top; padding: 0 3mm 0 3mm; border-left: 1px solid #bbb; font-size: 8.5pt; color: #444; }
+table.kf td:first-child { border-left: none; padding-left: 0; }
+table.kf b { display: block; font-size: 17pt; color: #1F3A5F; line-height: 1.1; margin-bottom: 1mm; }
+ol.f { padding-left: 5mm; margin: 1mm 0 2mm; } ol.f li { margin-bottom: 1.8mm; text-align: justify; }
+.cap { font-size: 9pt; font-weight: bold; margin: 3mm 0 1mm; }
+.src { font-size: 7.5pt; color: #666; margin: 0.5mm 0 3mm; }
+img { display: block; width: 100%; break-inside: avoid; }
+.w85 { width: 85%; } .w75 { width: 75%; } .w66 { width: 66%; }
+.side { display: grid; grid-template-columns: 54% 1fr; gap: 6mm; align-items: start; }
+table.t { border-collapse: collapse; width: 100%; font-size: 8.6pt; margin: 1mm 0 0.5mm; }
+table.t th { text-align: left; font-weight: normal; color: #444; border-top: 1px solid #666; border-bottom: 1px solid #666; padding: 1mm 1.5mm; }
+table.t td { border-bottom: 1px solid #ddd; padding: 0.9mm 1.5mm; }
+table.t td.n, table.t th.n { text-align: right; white-space: nowrap; }
+table, .kf, figure { break-inside: avoid; }
+h2, h3, .cap { break-after: avoid; }
+.pb { break-before: page; }
+.small { font-size: 8.5pt; color: #444; }
 </style></head><body>
 
+<div class="place">Санкт-Петербург, октябрь 2026 г.</div>
 <h1>Кто занимает первые этажи новостроек Санкт-Петербурга</h1>
-<div class="sub">Санкт-Петербург. Жилые дома, введённые в 2021–2025 гг. Октябрь 2026 г.</div>
-<div class="by">Независимое студенческое исследование. Автор: Михаил. Открытые данные ДОМ.РФ и OpenStreetMap; код и методология — в репозитории проекта.</div>
-<div class="kpi">
- <div><b>793</b><span>жилых домов в 295 ЖК, 315 тыс. квартир</span></div>
- <div><b>956</b><span>арендаторов первых этажей в 491 домах с надёжным контуром OSM</span></div>
- <div><b>23%</b><span>арендаторов — пункты выдачи заказов маркетплейсов</span></div>
- <div><b>−13 п. п.</b><span>доля продуктовых в бизнес-классе по сравнению с комфорт-классом</span></div>
-</div>
-<p class="lead">Первые этажи новостроек, сданных в 2021–2025 гг., заняты прежде всего форматами повседневного спроса: продуктовые магазины (24% арендаторов) и пункты выдачи заказов (23%) вместе дают 48% объектов. Структура заметно различается по классам: в ЖК бизнес- и элитного класса продуктовых в 1,8 раза меньше, чем в комфорт- и типовом классе (17% против 30%), а общепита — в 2,1 раза больше (22% против 11%).</p>
-<h2>5 ключевых выводов</h2>
-<ol class="k"><li><b>Для продуктовых правило видно, но отчасти это эффект локации.</b> Согласно классификации бизнес-класса NF GROUP, в нежилых помещениях такого класса нежелательны общепит и продуктовые магазины. Доля продуктовых в ЖК бизнес- и элитного класса на 13 п. п. ниже (95% ДИ [−18; −8]); в поясе до 8 км от центра — 15% против 26%. Но относительно своего окружения (500 м) продуктовых в ЖК обеих групп больше почти одинаково — в 1,3 и 1,4 раза: бизнес-класс стоит там, где продуктовых меньше вообще.</li><li><b>Для общепита — нет.</b> Общепита в бизнес-классе больше: +11 п. п. (95% ДИ [6; 18]), и больше, чем в его же окружении (индекс 1,4 против 0,9 в комфорте). Меняется формат: рестораны и бары — 21% общепита бизнес-класса против 5% в комфорте, фастфуд — 12% против 33%. Данные согласуются с тем, что ограничение касается массовых форматов, а не общепита в целом.</li><li><b>Маркетплейсы — новый якорный арендатор.</b> 23% арендаторов — пункты выдачи заказов; в комфорт-классе — 27%. В новых ЖК доля ПВЗ в 2,0–2,4 раза выше, чем в окружающей застройке (500 м). Крупнейший оператор ПВЗ — Ozon (79 объектов, 50% ПВЗ с указанным брендом), далее Wildberries (46).</li><li><b>42% продуктовых — алкомаркеты</b> (shop=alcohol/wine в OSM); «Красное&Белое» — третий по числу объектов сетевой арендатор (41).</li><li><b>Насыщенность падает к окраинам.</b> В Адмиралтейском и Петроградском районах — 21 и 12 арендаторов на 1 000 квартир, в Приморском (крупнейший по вводу, 34 тыс. квартир) — 4,2, в Пушкинском — 2,8. У домов комфорт-класса дальше 15 км от центра арендатор в OSM есть лишь в 32% случаев.</li><li><b>Ручная сверка изменила метод.</b> Проверка по Яндекс Картам показала, что при пороге 30 м в центре к дому привязывались арендаторы соседних зданий, а при ошибочном контуре — чужие. Порог снижен до 10 м, дома с недостоверным контуром исключены; выводы при порогах 0 и 30 м совпадают по направлению (таблица «Устойчивость»).</li></ol>
-<h3>Основные показатели</h3>
-<table><tr><th class="">Показатель</th><th class="n">Бизнес + Элитный</th><th class="n">Комфорт + Типовой</th><th class="n">Все</th><th class="n">Разница Б+Э − К+Т</th></tr><tr><td class="">Арендаторов «внутри ЖК», шт.</td><td class="n">396</td><td class="n">592</td><td class="n">956</td><td class="n">—</td></tr><tr><td class="">Продуктовые, %</td><td class="n">16,7</td><td class="n">29,7</td><td class="n">24,5</td><td class="n">−13,1 п. п.</td></tr><tr><td class="">Общепит, %</td><td class="n">22,2</td><td class="n">10,8</td><td class="n">15,4</td><td class="n">+11,4 п. п.</td></tr><tr><td class="">Пункты выдачи заказов, %</td><td class="n">17,2</td><td class="n">27,2</td><td class="n">23,2</td><td class="n">−10,0 п. п.</td></tr><tr><td class="">Непрод. торговля, %</td><td class="n">11,1</td><td class="n">7,8</td><td class="n">9,1</td><td class="n">+3,3 п. п.</td></tr><tr><td class="">Арендаторов на 1 000 квартир</td><td class="n">11,4</td><td class="n">3,6</td><td class="n">5,0</td><td class="n">—</td></tr></table>
-<div class="src">Источник: расчёты автора по данным ДОМ.РФ и OpenStreetMap, 2026. Доли — от арендаторов «внутри ЖК» (≤10 м от корпуса, дома с надёжным контуром OSM), объект учитывается один раз на ЖК.</div>
+<div class="by">Жилые дома, введённые в 2021–2025 гг. Автор: Михаил Шахов. Исследование сделано самостоятельно по открытым данным
+ДОМ.РФ и OpenStreetMap; код и данные выложены в репозиторий.</div>
+<table class="kf"><tr>
+ <td><b>793</b>жилых домов в 295 ЖК, 315 тыс. квартир</td>
+ <td><b>956</b>арендаторов на первых этажах 491 дома</td>
+ <td><b>23%</b>арендаторов составляют пункты выдачи заказов</td>
+ <td><b>−13 п. п.</b>разница в доле продуктовых между бизнес- и комфорт-классом</td>
+</tr></table>
+<p>В обзоре NF GROUP по рынку бизнес-класса Петербурга за I полугодие 2026 г. сказано, что в нежилых помещениях бизнес-класса нежелательны общепит и продуктовые магазины (по данным NF GROUP). Цель работы: посмотреть, видно ли это в том, кто на самом деле арендует первые этажи уже заселённых домов.</p>
+<p>Чаще всего первые этажи новых домов занимают продуктовые магазины (24% арендаторов) и пункты выдачи заказов (23%), вместе почти половина. По классам картина разная. В бизнес- и элитных ЖК продуктовых меньше (17% против 30% в комфорт- и типовом классе), общепита больше (22% против 11%).</p>
+<h2>Основные выводы</h2>
+<ol class="f"><li>Продуктовых магазинов в бизнес- и элитных ЖК меньше: 17% арендаторов против 30% (разница −13 п. п., 95% доверительный интервал от −18 до −8). Частично это объясняется расположением: бизнес-класс в выборке ближе к центру, где продуктовых вообще меньше. Если сравнивать каждый ЖК с застройкой в радиусе 500 м, перевес продуктовых в обеих группах почти одинаковый (в 1,3 и 1,4 раза).</li><li>Общепита в бизнес-классе, наоборот, больше: 22% против 11% (разница +11 п. п., интервал от +6 до +18). Отличается формат. Рестораны и бары составляют 21% общепита бизнес-класса и 5% в комфорт-классе, фастфуд 12% и 33%. Похоже, требование на практике касается скорее фастфуда, чем общепита вообще.</li><li>Пунктов выдачи заказов 23% от всех арендаторов, в комфорт-классе 27%. В новых домах их доля в 2,0–2,4 раза выше, чем в окружающей застройке. Больше всего точек Ozon (79, 50% ПВЗ с известным брендом), следом идёт Wildberries (46).</li><li>42% продуктовых магазинов в выборке составляют алкомаркеты (теги shop=alcohol и wine). «Красное&Белое» по числу точек третье среди всех сетей (41).</li><li>Плотность арендаторов сильно зависит от района. В Адмиралтейском районе 21 арендатор на 1 000 квартир, в Петроградском 12, в Приморском 4,2, в Пушкинском 2,8. У домов комфорт-класса дальше 15 км от центра хотя бы один арендатор в OSM есть только в 32% случаев.</li></ol>
+<div class="cap">Таблица 1. Основные показатели по группам классов</div>
+<table class="t"><tr><th class="">Показатель</th><th class="n">Б+Э</th><th class="n">К+Т</th><th class="n">Все</th><th class="n">Разница Б+Э и К+Т</th></tr><tr><td class="">Арендаторов, шт.</td><td class="n">396</td><td class="n">592</td><td class="n">956</td><td class="n">–</td></tr><tr><td class="">Продуктовые, %</td><td class="n">16,7</td><td class="n">29,7</td><td class="n">24,5</td><td class="n">−13,1 п. п.</td></tr><tr><td class="">Общепит, %</td><td class="n">22,2</td><td class="n">10,8</td><td class="n">15,4</td><td class="n">+11,4 п. п.</td></tr><tr><td class="">Пункты выдачи заказов, %</td><td class="n">17,2</td><td class="n">27,2</td><td class="n">23,2</td><td class="n">−10,0 п. п.</td></tr><tr><td class="">Непродовольственная торговля, %</td><td class="n">11,1</td><td class="n">7,8</td><td class="n">9,1</td><td class="n">+3,3 п. п.</td></tr><tr><td class="">Арендаторов на 1 000 квартир</td><td class="n">11,4</td><td class="n">3,6</td><td class="n">5,0</td><td class="n">–</td></tr></table>
+<div class="src">Источник: расчёты автора по данным ДОМ.РФ (выгрузка 26–27.10.2026) и OpenStreetMap (Geofabrik, 25.10.2026). Б+Э: бизнес- и элитный класс, К+Т: комфорт- и типовой класс. Доли считаются от арендаторов в пределах 10 м от дома; один объект учитывается один раз на ЖК.</div>
 
-<div class="pb"></div>
-<h2>1. Вопрос и выборка</h2>
-<p>NF GROUP в обзоре рынка бизнес-класса Санкт-Петербурга за I полугодие 2026 г. относит к требованиям класса качество
-нежилых помещений: в них возможны офисы, услуги и торговля, но нежелательны общепит и продуктовые магазины; для бизнес лайт
-требований нет (по данным NF GROUP). Исследование проверяет, видно ли это правило в том, кто фактически занимает первые этажи
-уже заселённых ЖК, — и как наполнение различается по классам и районам.</p>
-<p>Выборка — все 793 жилых домов Санкт-Петербурга со статусом «Сдан» в ДОМ.РФ и датой ввода 2021–2025 гг.
-(295 ЖК, 315 317 квартир). Класс — официальный фильтр каталога ДОМ.РФ. Медиана расстояния до центра у элитных и бизнес-домов —
-3,8 и 5,1 км, у комфорт и типовых — 14,2 и 20,8 км, — поэтому ниже каждое сравнение проверяется с поправкой на локацию.</p>
-<table><tr><th class="">Класс ДОМ.РФ</th><th class="n">Домов</th><th class="n">ЖК</th><th class="n">Квартир</th><th class="n">Медиана до центра, км</th><th class="n">С надёжным контуром</th><th class="n">Плотность арендаторов на 1 000 кв.</th><th class="n">Домов с арендатором, %</th></tr><tr><td class="">Элитный</td><td class="n">22</td><td class="n">21</td><td class="n">4 492</td><td class="n">3,8</td><td class="n">18</td><td class="n">9,9</td><td class="n">50</td></tr><tr><td class="">Бизнес</td><td class="n">104</td><td class="n">70</td><td class="n">40 560</td><td class="n">5,1</td><td class="n">78</td><td class="n">11,6</td><td class="n">72</td></tr><tr><td class="">Комфорт</td><td class="n">571</td><td class="n">173</td><td class="n">232 655</td><td class="n">14,2</td><td class="n">337</td><td class="n">3,8</td><td class="n">47</td></tr><tr><td class="">Типовой</td><td class="n">96</td><td class="n">38</td><td class="n">37 610</td><td class="n">20,8</td><td class="n">58</td><td class="n">2,5</td><td class="n">28</td></tr><tr><td class="">Итого</td><td class="n">793</td><td class="n">295</td><td class="n">315 317</td><td class="n">13,0</td><td class="n">491</td><td class="n">5,0</td><td class="n">49</td></tr></table>
-<div class="src">Источник: расчёты автора по данным ДОМ.РФ и OpenStreetMap, 2026</div>
+<h2>1. Выборка</h2>
+<p>В выборку вошли все 793 жилых домов Петербурга, которые в каталоге ДОМ.РФ отмечены как сданные и введены
+в 2021–2025 гг. (295 ЖК, 315 317 квартир). Класс взят из фильтра каталога ДОМ.РФ. Элитные и бизнес-дома стоят
+заметно ближе к центру: медиана расстояния 3,8 и
+5,1 км, у комфорт- и типовых домов 14,2
+и 20,8 км. Из-за этого ниже каждое сравнение проверяется ещё и с поправкой на расположение.</p>
+<div class="cap">Таблица 2. Выборка по классам</div>
+<table class="t"><tr><th class="">Класс</th><th class="n">Домов</th><th class="n">ЖК</th><th class="n">Квартир</th><th class="n">До центра, км (медиана)</th><th class="n">С надёжным контуром</th><th class="n">Арендаторов на 1 000 кв.</th><th class="n">Домов с арендатором, %</th></tr><tr><td class="">Элитный</td><td class="n">22</td><td class="n">21</td><td class="n">4 492</td><td class="n">3,8</td><td class="n">18</td><td class="n">9,9</td><td class="n">50</td></tr><tr><td class="">Бизнес</td><td class="n">104</td><td class="n">70</td><td class="n">40 560</td><td class="n">5,1</td><td class="n">78</td><td class="n">11,6</td><td class="n">72</td></tr><tr><td class="">Комфорт</td><td class="n">571</td><td class="n">173</td><td class="n">232 655</td><td class="n">14,2</td><td class="n">337</td><td class="n">3,8</td><td class="n">47</td></tr><tr><td class="">Типовой</td><td class="n">96</td><td class="n">38</td><td class="n">37 610</td><td class="n">20,8</td><td class="n">58</td><td class="n">2,5</td><td class="n">28</td></tr><tr><td class="">Всего</td><td class="n">793</td><td class="n">295</td><td class="n">315 317</td><td class="n">13,0</td><td class="n">491</td><td class="n">5,0</td><td class="n">49</td></tr></table>
+<div class="src">Источник: расчёты автора по данным ДОМ.РФ (выгрузка 26–27.10.2026) и OpenStreetMap (Geofabrik, 25.10.2026). Б+Э: бизнес- и элитный класс, К+Т: комфорт- и типовой класс.</div>
 
-<h2>2. Структура арендаторов</h2>
-<img src="../output/charts/c1_structure.png" class="w80">
-<p>Комфорт и типовой класс — это «магазин у дома»: продукты (30%), ПВЗ (27%) и аптеки
-(8%). В бизнес- и элитном классе структура ровнее: больше общепита (22%), салонов красоты
-(13%) и офисов (2% против 0,3%).</p>
-<img src="../output/charts/c6_brands.png" class="w80">
+<h2>2. Кто арендует первые этажи</h2>
+<div class="cap">Рисунок 1. Структура арендаторов по классам жилья, %</div><img src="../output/charts/c1_structure.png" class="w66"><div class="src">Источник: расчёты автора по данным ДОМ.РФ (выгрузка 26–27.10.2026) и OpenStreetMap (Geofabrik, 25.10.2026). Б+Э: бизнес- и элитный класс, К+Т: комфорт- и типовой класс.</div>
+<p>В комфорт- и типовом классе больше всего продуктовых (30%), пунктов выдачи (27%) и аптек
+(8%). В бизнес- и элитном классе категории распределены ровнее, там чаще встречаются общепит
+(22%) и салоны красоты (13%); офисов 2% против
+0,3% в комфорте. Среди сетей лидируют пункты выдачи маркетплейсов и продуктовые сети (рисунок 2).</p>
+<div class="cap">Рисунок 2. Десять сетей с наибольшим числом точек на первых этажах</div><img src="../output/charts/c6_brands.png" class="w66"><div class="src">Источник: расчёты автора по данным OpenStreetMap. Учтены объекты с тегом brand (39% всех арендаторов).</div>
 
-<h2>3. Проверка правила классификации</h2>
-<img src="../output/charts/c2_rule_check.png" class="w80">
-<p>Разница по продуктовым (−13 п. п.), ПВЗ (−10 п. п.) и общепиту (+11 п. п.) значима: 95% доверительные интервалы
-(бутстрэп по 50 и 91 ЖК) не включают ноль. По непродовольственной торговле разница (+3 п. п.,
-ДИ [−0; 7]) незначима.</p>
-<h3>Это не эффект центра?</h3>
-<img src="../output/charts/c3_zones.png" class="w80">
-<p>Внутри поясов разница сохраняется: до 8 км продуктовые — 15% против 26%,
-в поясе 8–15 км — 23% против 29% (у бизнес-класса здесь всего
-70 объектов). Второй контроль — сравнение ЖК с его же окружением
-(все объекты OSM в радиусе 500 м): индекс 1,0 означает «как вокруг». Продуктовых в ЖК обеих групп больше, чем вокруг, почти одинаково
-(1,32 и 1,40), но в окружении бизнес-класса их доля ниже
-(13% против 21%) — значит, заметная часть разницы
-объясняется локацией. С общепитом иначе: в бизнес-классе его больше, чем вокруг (1,36), в комфорте —
-меньше (0,91). ПВЗ в новых ЖК обеих групп в 2,0–2,4 раза чаще, чем вокруг.</p>
-<table><tr><th class="">Категория</th><th class="n">Б+Э: в ЖК, %</th><th class="n">Б+Э: 500 м, %</th><th class="n">К+Т: в ЖК, %</th><th class="n">К+Т: 500 м, %</th><th class="n">Б+Э: индекс</th><th class="n">К+Т: индекс</th></tr><tr><td class="">Продукты</td><td class="n">16,7</td><td class="n">12,7</td><td class="n">29,7</td><td class="n">21,2</td><td class="n">1,32</td><td class="n">1,40</td></tr><tr><td class="">Пункты выдачи заказов</td><td class="n">17,2</td><td class="n">7,3</td><td class="n">27,2</td><td class="n">13,3</td><td class="n">2,37</td><td class="n">2,04</td></tr><tr><td class="">Общепит</td><td class="n">22,2</td><td class="n">16,4</td><td class="n">10,8</td><td class="n">11,9</td><td class="n">1,36</td><td class="n">0,91</td></tr><tr><td class="">Аптеки</td><td class="n">3,0</td><td class="n">3,0</td><td class="n">7,9</td><td class="n">5,1</td><td class="n">1,02</td><td class="n">1,55</td></tr><tr><td class="">Непрод. торговля</td><td class="n">11,1</td><td class="n">21,7</td><td class="n">7,8</td><td class="n">17,7</td><td class="n">0,51</td><td class="n">0,44</td></tr><tr><td class="">Красота</td><td class="n">13,4</td><td class="n">7,4</td><td class="n">5,4</td><td class="n">4,8</td><td class="n">1,81</td><td class="n">1,12</td></tr></table>
-<div class="src">Источник: расчёты автора по данным ДОМ.РФ и OpenStreetMap, 2026</div>
-<h3>Устойчивость</h3>
-<table><tr><th class="">Вариант расчёта</th><th class="n">Общепит_Б+Э</th><th class="n">Общепит_К+Т</th><th class="n">Продукты_Б+Э</th><th class="n">Продукты_К+Т</th><th class="n">Объектов</th></tr><tr><td class="">основной вариант (≤10 м)</td><td class="n">22,2</td><td class="n">10,8</td><td class="n">16,7</td><td class="n">29,7</td><td class="n">988</td></tr><tr><td class="">только объекты внутри контура (0 м)</td><td class="n">22,3</td><td class="n">10,8</td><td class="n">16,9</td><td class="n">30,1</td><td class="n">967</td></tr><tr><td class="">порог 30 м (до ручной сверки)</td><td class="n">20,2</td><td class="n">10,4</td><td class="n">15,2</td><td class="n">30,1</td><td class="n">1 110</td></tr><tr><td class="">только дома с точкой внутри контура OSM</td><td class="n">28,8</td><td class="n">11,2</td><td class="n">16,8</td><td class="n">30,0</td><td class="n">365</td></tr><tr><td class="">без 5 крупнейших ЖК</td><td class="n">24,8</td><td class="n">10,2</td><td class="n">16,9</td><td class="n">30,1</td><td class="n">799</td></tr></table>
-<div class="src">Источник: расчёты автора по данным ДОМ.РФ и OpenStreetMap, 2026. Доли общепита и продуктовых, % (Б+Э — Бизнес + Элитный, К+Т — Комфорт + Типовой).</div>
+<h2>3. Проверка требования к бизнес-классу</h2>
+<div class="cap">Рисунок 3. Доля категорий среди арендаторов, % (с 95% доверительным интервалом)</div><img src="../output/charts/c2_rule_check.png" class="w66"><div class="src">Источник: расчёты автора по данным ДОМ.РФ (выгрузка 26–27.10.2026) и OpenStreetMap (Geofabrik, 25.10.2026). Б+Э: бизнес- и элитный класс, К+Т: комфорт- и типовой класс.</div>
+<p>Разница по продуктовым (−13 п. п.), пунктам выдачи (−10 п. п.) и общепиту (+11 п. п.) статистически значима:
+доверительные интервалы, посчитанные бутстрэпом по 50 и 91 ЖК, не включают ноль. По непродовольственной торговле
+разница (+3 п. п.) в пределах погрешности.</p>
+<h3>Поправка на расположение</h3>
+<div class="cap">Рисунок 4. Общепит и продукты в зависимости от расстояния до центра, %</div><img src="../output/charts/c3_zones.png" class="w66"><div class="src">Источник: расчёты автора по данным ДОМ.РФ и OpenStreetMap. Дальше 15 км от центра бизнес-класса в выборке почти нет.</div>
+<p>На одинаковом расстоянии от центра разница остаётся. В поясе до 8 км продуктовых 15% против
+26%, в поясе 8–15 км 23% против
+29% (правда, у бизнес-класса там всего
+70 объектов).</p>
+<p>Вторая проверка: каждый ЖК сравнивается со всеми объектами OSM в радиусе 500 м. Индекс 1 значит, что в ЖК категория
+встречается так же часто, как вокруг. Продуктовых в ЖК обеих групп больше, чем вокруг, и почти одинаково
+(1,32 и 1,40). Но вокруг бизнес-класса их доля
+ниже (13% против 21%), так что значительная
+часть разницы связана с расположением. Общепита в бизнес-классе больше, чем вокруг (1,36),
+в комфорте немного меньше (0,91). Пункты выдачи в новых домах встречаются в 2,0–2,4 раза чаще,
+чем в окружении.</p>
+<div class="cap">Таблица 3. Доля категорий в ЖК и в радиусе 500 м вокруг, %</div>
+<table class="t"><tr><th class="">Категория</th><th class="n">Б+Э в ЖК, %</th><th class="n">Б+Э вокруг, %</th><th class="n">К+Т в ЖК, %</th><th class="n">К+Т вокруг, %</th><th class="n">Б+Э индекс</th><th class="n">К+Т индекс</th></tr><tr><td class="">Продукты</td><td class="n">16,7</td><td class="n">12,7</td><td class="n">29,7</td><td class="n">21,2</td><td class="n">1,32</td><td class="n">1,40</td></tr><tr><td class="">Пункты выдачи заказов</td><td class="n">17,2</td><td class="n">7,3</td><td class="n">27,2</td><td class="n">13,3</td><td class="n">2,37</td><td class="n">2,04</td></tr><tr><td class="">Общепит</td><td class="n">22,2</td><td class="n">16,4</td><td class="n">10,8</td><td class="n">11,9</td><td class="n">1,36</td><td class="n">0,91</td></tr><tr><td class="">Аптеки</td><td class="n">3,0</td><td class="n">3,0</td><td class="n">7,9</td><td class="n">5,1</td><td class="n">1,02</td><td class="n">1,55</td></tr><tr><td class="">Непрод. торговля</td><td class="n">11,1</td><td class="n">21,7</td><td class="n">7,8</td><td class="n">17,7</td><td class="n">0,51</td><td class="n">0,44</td></tr><tr><td class="">Красота</td><td class="n">13,4</td><td class="n">7,4</td><td class="n">5,4</td><td class="n">4,8</td><td class="n">1,81</td><td class="n">1,12</td></tr></table>
+<div class="src">Источник: расчёты автора по данным ДОМ.РФ (выгрузка 26–27.10.2026) и OpenStreetMap (Geofabrik, 25.10.2026). Б+Э: бизнес- и элитный класс, К+Т: комфорт- и типовой класс.</div>
+<div class="cap">Таблица 4. Доли общепита и продуктовых при разных вариантах расчёта, %</div>
+<table class="t"><tr><th class="">Вариант расчёта</th><th class="n">Общепит Б+Э</th><th class="n">Общепит К+Т</th><th class="n">Продукты Б+Э</th><th class="n">Продукты К+Т</th><th class="n">Объектов</th></tr><tr><td class="">основной (до 10 м от контура)</td><td class="n">22,2</td><td class="n">10,8</td><td class="n">16,7</td><td class="n">29,7</td><td class="n">988</td></tr><tr><td class="">только внутри контура</td><td class="n">22,3</td><td class="n">10,8</td><td class="n">16,9</td><td class="n">30,1</td><td class="n">967</td></tr><tr><td class="">до 30 м (первая версия)</td><td class="n">20,2</td><td class="n">10,4</td><td class="n">15,2</td><td class="n">30,1</td><td class="n">1 110</td></tr><tr><td class="">только дома, где точка ДОМ.РФ внутри контура</td><td class="n">28,8</td><td class="n">11,2</td><td class="n">16,8</td><td class="n">30,0</td><td class="n">365</td></tr><tr><td class="">без 5 крупнейших ЖК</td><td class="n">24,8</td><td class="n">10,2</td><td class="n">16,9</td><td class="n">30,1</td><td class="n">799</td></tr></table>
+<div class="src">Источник: расчёты автора по данным ДОМ.РФ (выгрузка 26–27.10.2026) и OpenStreetMap (Geofabrik, 25.10.2026). Б+Э: бизнес- и элитный класс, К+Т: комфорт- и типовой класс.</div>
 
 <h2>4. Районы</h2>
-<div class="g2"><img src="../output/charts/c5_map.png"><div>
-<p>Плотность арендаторов на 1 000 квартир различается по районам в 7 раз и более: от 20,9
-в Адмиралтейском до 2,8 в Пушкинском и 0,5 в Колпинском.
-Лидеры — районы, где в выборке преобладает бизнес-класс (доля Б+Э в Адмиралтейском — 81%,
-в Петроградском — 100%).</p>
-<p>Пять крупнейших по числу квартир районов (Приморский, Московский, Красносельский, Пушкинский, Выборгский) имеют
-2,7–6,7 арендатора на 1 000 квартир; в Пушкинском 39% арендаторов — продуктовые.</p>
-</div></div>
-<table><tr><th class="">Район</th><th class="n">Домов</th><th class="n">Квартир</th><th class="n">Доля Б+Э, %</th><th class="n">Домов с арендатором, %</th><th class="n">На 1 000 кв.</th><th class="n">Общепит, %</th><th class="n">Продукты, %</th><th class="n">ПВЗ, %</th></tr><tr><td class="">Адмиралтейский</td><td class="n">16</td><td class="n">7 041</td><td class="n">81</td><td class="n">94</td><td class="n">20,9</td><td class="n">15,0</td><td class="n">10,2</td><td class="n">12,9</td></tr><tr><td class="">Фрунзенский</td><td class="n">10</td><td class="n">4 875</td><td class="n">20</td><td class="n">80</td><td class="n">13,3</td><td class="n">12,3</td><td class="n">21,5</td><td class="n">15,4</td></tr><tr><td class="">Петроградский</td><td class="n">16</td><td class="n">4 268</td><td class="n">100</td><td class="n">56</td><td class="n">12,4</td><td class="n">28,3</td><td class="n">26,4</td><td class="n">11,3</td></tr><tr><td class="">Выборгский</td><td class="n">41</td><td class="n">18 404</td><td class="n">24</td><td class="n">63</td><td class="n">6,7</td><td class="n">14,6</td><td class="n">22,8</td><td class="n">25,2</td></tr><tr><td class="">Красногвардейский</td><td class="n">33</td><td class="n">12 687</td><td class="n">18</td><td class="n">46</td><td class="n">5,5</td><td class="n">12,9</td><td class="n">28,6</td><td class="n">27,1</td></tr><tr><td class="">Невский</td><td class="n">27</td><td class="n">15 926</td><td class="n">15</td><td class="n">67</td><td class="n">4,3</td><td class="n">11,6</td><td class="n">17,4</td><td class="n">26,1</td></tr><tr><td class="">Приморский</td><td class="n">67</td><td class="n">33 903</td><td class="n">16</td><td class="n">60</td><td class="n">4,2</td><td class="n">12,8</td><td class="n">24,8</td><td class="n">28,4</td></tr><tr><td class="">Петродворцовый</td><td class="n">13</td><td class="n">3 225</td><td class="n">8</td><td class="n">46</td><td class="n">4,0</td><td class="n">15,4</td><td class="n">38,5</td><td class="n">23,1</td></tr><tr><td class="">Красносельский</td><td class="n">47</td><td class="n">19 910</td><td class="n">0</td><td class="n">70</td><td class="n">3,7</td><td class="n">11,0</td><td class="n">39,7</td><td class="n">26,0</td></tr><tr><td class="">Василеостровский</td><td class="n">24</td><td class="n">13 859</td><td class="n">58</td><td class="n">58</td><td class="n">3,0</td><td class="n">24,4</td><td class="n">17,1</td><td class="n">34,1</td></tr><tr><td class="">Пушкинский</td><td class="n">85</td><td class="n">19 829</td><td class="n">6</td><td class="n">28</td><td class="n">2,8</td><td class="n">8,9</td><td class="n">39,3</td><td class="n">23,2</td></tr><tr><td class="">Московский</td><td class="n">56</td><td class="n">24 410</td><td class="n">11</td><td class="n">32</td><td class="n">2,7</td><td class="n">11,9</td><td class="n">34,3</td><td class="n">26,9</td></tr><tr><td class="">Калининский</td><td class="n">13</td><td class="n">4 545</td><td class="n">38</td><td class="n">54</td><td class="n">2,4</td><td class="n">18,2</td><td class="n">45,5</td><td class="n">36,4</td></tr><tr><td class="">Колпинский</td><td class="n">13</td><td class="n">4 197</td><td class="n">0</td><td class="n">15</td><td class="n">0,5</td><td class="n">0,0</td><td class="n">0,0</td><td class="n">50,0</td></tr><tr><td class="">Курортный</td><td class="n">24</td><td class="n">2 970</td><td class="n">0</td><td class="n">0</td><td class="n">0,0</td><td class="n">—</td><td class="n">—</td><td class="n">—</td></tr></table>
-<div class="src">Источник: расчёты автора по данным ДОМ.РФ и OpenStreetMap, 2026. Районы с 10 и более домами в выборке.</div>
+<div class="side"><div><div class="cap">Рисунок 5. Арендаторы на 1 000 квартир по районам</div><img src="../output/charts/c5_map.png" class=""><div class="src">Источник: расчёты автора по данным ДОМ.РФ и OpenStreetMap. Серым показаны районы, где в выборке меньше 10 домов.</div></div><div>
+<p>Между районами разница в плотности арендаторов больше чем в 7 раз:
+от 20,9 в Адмиралтейском до 2,8
+в Пушкинском и 0,5 в Колпинском. Впереди районы, где в выборке много бизнес-класса:
+в Адмиралтейском его доля 81%, в Петроградском 100%.</p>
+<p>В пяти районах с наибольшим числом квартир (Приморский, Московский, Красносельский, Пушкинский, Выборгский) на 1 000 квартир приходится
+от 2,7 до 6,7 арендатора. В Пушкинском 39%
+арендаторов составляют продуктовые.</p></div></div>
+<div class="cap">Таблица 5. Показатели по районам (районы, где в выборке 10 и больше домов)</div>
+<table class="t"><tr><th class="">Район</th><th class="n">Домов</th><th class="n">Квартир</th><th class="n">Б+Э, %</th><th class="n">С арендатором, %</th><th class="n">На 1 000 кв.</th><th class="n">Общепит, %</th><th class="n">Продукты, %</th><th class="n">ПВЗ, %</th></tr><tr><td class="">Адмиралтейский</td><td class="n">16</td><td class="n">7 041</td><td class="n">81</td><td class="n">94</td><td class="n">20,9</td><td class="n">15,0</td><td class="n">10,2</td><td class="n">12,9</td></tr><tr><td class="">Фрунзенский</td><td class="n">10</td><td class="n">4 875</td><td class="n">20</td><td class="n">80</td><td class="n">13,3</td><td class="n">12,3</td><td class="n">21,5</td><td class="n">15,4</td></tr><tr><td class="">Петроградский</td><td class="n">16</td><td class="n">4 268</td><td class="n">100</td><td class="n">56</td><td class="n">12,4</td><td class="n">28,3</td><td class="n">26,4</td><td class="n">11,3</td></tr><tr><td class="">Выборгский</td><td class="n">41</td><td class="n">18 404</td><td class="n">24</td><td class="n">63</td><td class="n">6,7</td><td class="n">14,6</td><td class="n">22,8</td><td class="n">25,2</td></tr><tr><td class="">Красногвардейский</td><td class="n">33</td><td class="n">12 687</td><td class="n">18</td><td class="n">46</td><td class="n">5,5</td><td class="n">12,9</td><td class="n">28,6</td><td class="n">27,1</td></tr><tr><td class="">Невский</td><td class="n">27</td><td class="n">15 926</td><td class="n">15</td><td class="n">67</td><td class="n">4,3</td><td class="n">11,6</td><td class="n">17,4</td><td class="n">26,1</td></tr><tr><td class="">Приморский</td><td class="n">67</td><td class="n">33 903</td><td class="n">16</td><td class="n">60</td><td class="n">4,2</td><td class="n">12,8</td><td class="n">24,8</td><td class="n">28,4</td></tr><tr><td class="">Петродворцовый</td><td class="n">13</td><td class="n">3 225</td><td class="n">8</td><td class="n">46</td><td class="n">4,0</td><td class="n">15,4</td><td class="n">38,5</td><td class="n">23,1</td></tr><tr><td class="">Красносельский</td><td class="n">47</td><td class="n">19 910</td><td class="n">0</td><td class="n">70</td><td class="n">3,7</td><td class="n">11,0</td><td class="n">39,7</td><td class="n">26,0</td></tr><tr><td class="">Василеостровский</td><td class="n">24</td><td class="n">13 859</td><td class="n">58</td><td class="n">58</td><td class="n">3,0</td><td class="n">24,4</td><td class="n">17,1</td><td class="n">34,1</td></tr><tr><td class="">Пушкинский</td><td class="n">85</td><td class="n">19 829</td><td class="n">6</td><td class="n">28</td><td class="n">2,8</td><td class="n">8,9</td><td class="n">39,3</td><td class="n">23,2</td></tr><tr><td class="">Московский</td><td class="n">56</td><td class="n">24 410</td><td class="n">11</td><td class="n">32</td><td class="n">2,7</td><td class="n">11,9</td><td class="n">34,3</td><td class="n">26,9</td></tr><tr><td class="">Калининский</td><td class="n">13</td><td class="n">4 545</td><td class="n">38</td><td class="n">54</td><td class="n">2,4</td><td class="n">18,2</td><td class="n">45,5</td><td class="n">36,4</td></tr><tr><td class="">Колпинский</td><td class="n">13</td><td class="n">4 197</td><td class="n">0</td><td class="n">15</td><td class="n">0,5</td><td class="n">0,0</td><td class="n">0,0</td><td class="n">50,0</td></tr><tr><td class="">Курортный</td><td class="n">24</td><td class="n">2 970</td><td class="n">0</td><td class="n">0</td><td class="n">0,0</td><td class="n">–</td><td class="n">–</td><td class="n">–</td></tr></table>
+<div class="src">Источник: расчёты автора по данным ДОМ.РФ (выгрузка 26–27.10.2026) и OpenStreetMap (Geofabrik, 25.10.2026). Б+Э: бизнес- и элитный класс, К+Т: комфорт- и типовой класс.</div>
+<div class="cap">Рисунок 6. Доля домов, у которых в OSM есть хотя бы один арендатор, %</div><img src="../output/charts/c4_fill.png" class="w66"><div class="src">Источник: расчёты автора по данным ДОМ.РФ и OpenStreetMap. Не показаны группы, где меньше 10 домов.</div>
+<p>Чем дальше от центра и чем новее дом, тем реже в OSM есть хоть один арендатор (для домов 2021 г. 55%,
+для домов 2025 г. 25%). Здесь смешаны две причины, которые по открытым данным не разделить: часть помещений
+действительно пустует или ещё не сдана, а на окраинах OSM медленнее обновляют. Поэтому выводы по окраинам опираются на меньшее число объектов.</p>
 
-<img src="../output/charts/c4_fill.png" class="w80">
-<p>Доля домов, у которых OSM знает хотя бы одного арендатора, падает от центра к окраинам и от старых домов к новым
-(сданы в 2021 г. — 55%, в 2025 г. — 25%). Это сумма двух эффектов, которые открытые данные
-не разделяют: помещения действительно пустуют или ещё не заняты, и OSM медленнее обновляется на окраинах. Поэтому на окраинах выводы
-о структуре опираются на меньшее число объектов.</p>
+<h2>5. Методика</h2>
+<p><i>Дома.</i> Каталог ДОМ.РФ (наш.дом.рф): 36 страниц списка сданных домов и 10 карточек, сохранены вручную в браузере
+26–27.10.2026. Убраны дубли (8), нежилые объекты (287), дома без даты ввода (3) и с вводом вне 2021–2025 гг. (630).</p>
+<p><i>Арендаторы.</i> Выгрузка OpenStreetMap от Geofabrik на 25.10.2026: 81 403 объекта в границах города, из них 6 885 не являются
+арендаторами (банкоматы, постаматы и т. п.) и исключены. Как теги разложены по категориям, показано в приложении.</p>
+<p><i>Привязка к домам.</i> Для каждой точки ДОМ.РФ ищется контур здания в OSM: точка внутри контура у 226 домов,
+ближайший контур не дальше 50 м у 417, контур не найден у 150. Контур считается надёжным,
+если его этажность отличается от ДОМ.РФ не больше чем на 2 этажа или не указана. Таких домов 491; исключены 150 домов
+без контура и 152 с другой этажностью. Арендатором дома считается объект OSM не дальше 10 м от контура.</p>
+<p><i>Сверка.</i> Первая версия расчёта использовала порог 30 м. Проверка трёх ЖК в центре по Яндекс Картам не подтвердила ни
+одного объекта: точки стояли на соседних зданиях, а у части домов контур был чужим (5–8 этажей вместо 10–11). После этого порог
+снижен до 10 м и добавлен фильтр по этажности; все три дома им отсеиваются. Для проверки 10 ЖК сверены вручную с Яндекс Картами. Из 80 объектов, найденных в OSM, на месте 57 (71%). При этом в тех же домах Яндекс показывает 171 организаций, то есть OSM знает примерно 33% арендаторов.</p>
+<p><i>Статистика.</i> Доли считаются от всех арендаторов группы, каждый объект учитывается один раз на ЖК. Доверительные интервалы
+получены бутстрэпом по ЖК (2 000 повторов). Расположение учитывается двумя способами: пояса удалённости от Дворцовой площади
+(до 8 км, 8–15 км, дальше 15 км) и сравнение с окружением в радиусе 500 м. Все цифры получаются скриптами src/01–08
+(Python 3.9, pandas, shapely, matplotlib).</p>
 
-<h2>5. Методология</h2>
-<ul class="k">
-<li><b>Дома.</b> ДОМ.РФ, каталог наш.дом.рф: 36 страниц списка сданных домов (place=78, objStatus=2) + 10 карточек, сохранены вручную
-в браузере 26–27.10.2026. Удалены дубли (8), нежилые объекты (287), дома без даты ввода (3) и вне 2021–2025 гг. (630).</li>
-<li><b>Арендаторы.</b> OpenStreetMap, выгрузка Geofabrik на 25.10.2026: 81 403 объекта в границах города, из них 6 885 «не арендаторов» исключены.
-Классификация тегов — в приложении.</li>
-<li><b>Привязка.</b> Точка дома ДОМ.РФ → контур здания OSM: точка внутри контура — 226 домов, ближайший контур ≤50 м —
-417, контур не найден — 150. Надёжным считается контур, этажность которого не расходится с ДОМ.РФ
-больше чем на 2 этажа (или не указана): таких 491 домов; исключены 150 домов без контура и 152 с расхождением этажности.
-«Внутри ЖК» — объект OSM не дальше 10 м от надёжного контура; объект считается один раз на ЖК.</li>
-<li><b>Ручная сверка.</b> Первая версия (порог 30 м, круг 50 м для домов без контура) сверялась с Яндекс Картами. На первых трёх ЖК
-в центре ни один объект OSM не подтвердился: точки стояли на соседних зданиях или через улицу, а контур был чужим (этажность 5–8 против 10–11).
-Отсюда новые правила; все три дома ими отбракованы. Выборочная сверка с Яндекс Картами (10 ЖК с надёжным контуром, 31.10.2026): точность OSM 71% (57 из 80 объектов подтверждены), полнота ≈33% (OSM знает 57 из 171 организаций в этих домах).</li>
-<li><b>Статистика.</b> Доли — от всех арендаторов группы; 95% доверительные интервалы — кластерный бутстрэп по ЖК (2 000 повторов).
-Контроль локации — пояса удалённости от Дворцовой площади (до 8 / 8–15 / 15+ км) и индекс «ЖК / окружение 500 м».</li>
-<li><b>Воспроизводимость.</b> Каждая цифра получается скриптами src/01–08 (Python 3.9, pandas, shapely, matplotlib).</li>
-</ul>
 <h2>6. Ограничения</h2>
-<ul class="k">
-<li><b>Полнота OSM.</b> У 51% домов с надёжным контуром OSM не знает ни одного арендатора; поэтому сравниваются доли, а не количества.</li>
-<li><b>Исключённые дома.</b> 302 из 793 домов не участвуют в метриках «внутри ЖК». Среди элитных и бизнес-домов
-надёжный контур чаще (76%), чем среди комфорт и типовых
-(59%).</li>
-<li><b>Классы.</b> В ДОМ.РФ нет «бизнес лайт» — он внутри «Бизнеса», поэтому прямо сравнить «бизнес vs бизнес лайт», как в классификации NF GROUP, нельзя.
-Классы ДОМ.РФ и консультантов могут расходиться.</li>
-<li><b>Первый этаж ≠ 10 м.</b> Даже при 10 м возможны объекты соседнего здания, стоящего вплотную. Порог 0 м (только внутри контура) даёт те же доли
-(таблица «Устойчивость»).</li>
-<li><b>Нет площадей и ставок.</b> Открытые данные не дают площадь помещений, ставку аренды и вакантность — только факт наличия арендатора.
-Поле ДОМ.РФ «нежилой первый этаж» есть в карточках домов, но массовая выгрузка карточек невозможна (защита сайта), поэтому метрика не используется.</li>
-<li><b>Срез, не динамика.</b> Данные на конец октября 2026 г.; сравнение «год к году» потребует повторной выгрузки.</li>
-</ul>
-<h3>Приложение. Категории арендаторов (теги OSM)</h3>
-<table><tr><th class="">Категория</th><th class="">Теги OpenStreetMap</th></tr><tr><td class="">Общепит</td><td class="">amenity: restaurant, cafe, fast_food, bar, pub, food_court, ice_cream</td></tr><tr><td class="">Продукты</td><td class="">shop: supermarket, convenience, alcohol, wine, bakery, butcher, greengrocer и др.</td></tr><tr><td class="">Пункты выдачи заказов</td><td class="">shop=outpost (Ozon, Wildberries, Яндекс Маркет, Авито)</td></tr><tr><td class="">Аптеки / Медицина</td><td class="">amenity=pharmacy; amenity: clinic, dentist, doctors; healthcare=*</td></tr><tr><td class="">Красота</td><td class="">shop: beauty, hairdresser, cosmetics, massage, nails</td></tr><tr><td class="">Фитнес и спорт</td><td class="">leisure: fitness_centre, sports_centre, dance; amenity=dojo</td></tr><tr><td class="">Детские и образование</td><td class="">amenity: kindergarten, childcare, language_school и др.</td></tr><tr><td class="">Бытовые и фин. услуги</td><td class="">amenity: bank, post_office, veterinary; shop: laundry, dry_cleaning, repair и др.; craft=*</td></tr><tr><td class="">Офисы</td><td class="">office=*, amenity=coworking_space</td></tr><tr><td class="">Непрод. торговля</td><td class="">прочие shop=* (одежда, хозтовары, электроника, цветы и др.)</td></tr><tr><td class="">Исключены (не арендаторы)</td><td class="">банкоматы, постаматы, терминалы, АЗС, храмы, киоски, ТЦ-«контейнеры»</td></tr></table>
-<div class="foot">Независимое исследование автора; не связано с NF GROUP и не воспроизводит её методологию. Цитаты классификации бизнес-класса —
-по данным NF GROUP («Рынок жилой недвижимости бизнес-класса. Санкт-Петербург. I полугодие 2026»). Источники: ДОМ.РФ (наш.дом.рф),
-© участники OpenStreetMap (ODbL), Geofabrik.</div>
+<p>OSM неполон: у 51% домов с надёжным контуром не найдено ни одного арендатора, а по сверке OSM знает примерно треть
+организаций. Поэтому сравниваются доли, а не количество.</p>
+<p>Из анализа арендаторов выпало 302 дома из 793. У элитных и бизнес-домов надёжный контур
+встречается чаще (76%), чем у комфорт- и типовых
+(59%).</p>
+<p>В ДОМ.РФ нет подкласса «бизнес лайт», он входит в «бизнес». Поэтому сравнить бизнес и бизнес лайт, как в классификации
+NF GROUP, нельзя. Классы ДОМ.РФ и консультантов вообще могут не совпадать.</p>
+<p>Даже при 10 м к дому может попасть объект из соседнего здания, если оно стоит вплотную (так было с одним ЖК при сверке).
+Вариант «только внутри контура» даёт те же доли (таблица 4).</p>
+<p>Открытые данные не дают площадь помещений, ставки и вакантность, только факт наличия арендатора. Поле ДОМ.РФ «нежилой первый
+этаж» есть в карточках домов, но массово карточки скачать нельзя (сайт защищён), поэтому оно не используется. Наконец, это срез
+на конец октября 2026 г.; для динамики нужна повторная выгрузка.</p>
+<div class="cap">Таблица 6. Категории арендаторов и теги OpenStreetMap</div>
+<table class="t"><tr><th class="">Категория</th><th class="">Теги OpenStreetMap</th></tr><tr><td class="">Общепит</td><td class="">amenity: restaurant, cafe, fast_food, bar, pub, food_court, ice_cream</td></tr><tr><td class="">Продукты</td><td class="">shop: supermarket, convenience, alcohol, wine, bakery, butcher, greengrocer и др.</td></tr><tr><td class="">Пункты выдачи заказов</td><td class="">shop=outpost (Ozon, Wildberries, Яндекс Маркет, Авито)</td></tr><tr><td class="">Аптеки, медицина</td><td class="">amenity=pharmacy; amenity: clinic, dentist, doctors; healthcare=*</td></tr><tr><td class="">Красота</td><td class="">shop: beauty, hairdresser, cosmetics, massage, nails</td></tr><tr><td class="">Фитнес и спорт</td><td class="">leisure: fitness_centre, sports_centre, dance; amenity=dojo</td></tr><tr><td class="">Детские и образование</td><td class="">amenity: kindergarten, childcare, language_school и др.</td></tr><tr><td class="">Бытовые и финансовые услуги</td><td class="">amenity: bank, post_office, veterinary; shop: laundry, dry_cleaning, repair и др.; craft=*</td></tr><tr><td class="">Офисы</td><td class="">office=*, amenity=coworking_space</td></tr><tr><td class="">Непродовольственная торговля</td><td class="">прочие shop=* (одежда, хозтовары, электроника, цветы и др.)</td></tr><tr><td class="">Не считаются арендаторами</td><td class="">банкоматы, постаматы, терминалы, АЗС, храмы, киоски, торговые центры целиком</td></tr></table>
+<p class="small" style="margin-top:4mm">Работа выполнена самостоятельно и не связана с NF GROUP. Классификация бизнес-класса
+цитируется по обзору NF GROUP «Рынок жилой недвижимости бизнес-класса. Санкт-Петербург. I полугодие 2026». Данные: ДОМ.РФ
+(наш.дом.рф), © участники OpenStreetMap (лицензия ODbL), Geofabrik.</p>
 </body></html>
