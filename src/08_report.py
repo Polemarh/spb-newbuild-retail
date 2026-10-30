@@ -79,7 +79,10 @@ no_fp, bad_lv = int((H.footprint == "point").sum()), int((H.levels_ok == 0).sum(
 fill_cls = t("t2_fill_by_class.csv", index_col=0).iloc[:, 0]
 big5 = dist.nlargest(5, "квартир")
 match = {k: v for k, v in (l.split()[:2] for l in osm_rep.splitlines() if l.strip().split()[:1] and l.strip().split()[0] in ("inside", "nearest", "none"))}
-check_line = (" ".join(check[1:3]) if check else
+chk = t("t7_check.csv", index_col=0)["значение"] if (TAB / "t7_check.csv").exists() else None
+check_line = (f"Выборочная сверка с Яндекс Картами ({int(chk['ЖК'])} ЖК с надёжным контуром, 31.10.2026): точность OSM "
+              f"{int(chk['точность_%'])}% ({int(chk['osm_ok'])} из {int(chk['osm_n'])} объектов подтверждены), полнота ≈{int(chk['полнота_%'])}% "
+              f"(OSM знает {int(chk['osm_ok'])} из {int(chk['yandex_n'])} организаций в этих домах)." if chk is not None else
               "Выборочная сверка 12 ЖК с Яндекс Картами выполняется (шаблон — output/check_t7.csv); результат будет добавлен.")
 
 CSS = """

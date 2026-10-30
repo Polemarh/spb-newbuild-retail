@@ -74,7 +74,11 @@ if F.exists():
              f"Помещений с вывеской по Яндексу: {int(done.yandex_n.sum())} → полнота OSM ≈ {rec:.0%}",
              "По классам (точность | полнота):"]
     for k, g in done.groupby("class_name"):
-        lines.append(f"  {k}: {g.osm_ok.sum() / max(g.osm_n.sum(), 1):.0%} | {g.osm_ok.sum() / max(g.yandex_n.sum(), 1):.0%}")
+        pr = f"{g.osm_ok.sum() / g.osm_n.sum():.0%}" if g.osm_n.sum() else "—"
+        lines.append(f"  {k} ({len(g)} ЖК): {pr} | {g.osm_ok.sum() / max(g.yandex_n.sum(), 1):.0%}")
+    pd.Series({"ЖК": len(done), "osm_n": int(done.osm_n.sum()), "osm_ok": int(done.osm_ok.sum()),
+               "yandex_n": int(done.yandex_n.sum()), "точность_%": round(prec * 100),
+               "полнота_%": round(rec * 100)}).to_csv(ROOT / "output/tables/t7_check.csv", header=["значение"])
     print("\n".join(lines))
     (ROOT / "data/processed/06_check_report.txt").write_text("\n".join(lines), encoding="utf-8")
     raise SystemExit
