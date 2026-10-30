@@ -1,2 +1,5 @@
 osmium>=4.0
 pandas>=2.0
+shapely>=2.0
+numpy>=1.24
+matplotlib>=3.7
